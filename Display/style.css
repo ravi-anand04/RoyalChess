@@ -1,0 +1,30 @@
+.chessboard {
+  width: 640px;
+  height: 640px;
+  border: 25px solid #333;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  /* grid-template-rows: repeat(8, 1fr); */
+}
+.black {
+  width: 80px;
+  height: 80px;
+  /* background-color: #999; */
+  background-color: #69943e;
+  font-size: 50px;
+  text-align: center;
+}
+.white {
+  width: 80px;
+  height: 80px;
+  background-color: #ddeac3;
+  font-size: 50px;
+  text-align: center;
+}
+
+.chessboard::after {
+  /* content: "12345";
+    background-color: aqua;
+    width: 640px; */
+}

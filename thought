@@ -1,0 +1,10 @@
+// Initial Setup
+
+
+// Functions
+
+// 1. Piece clicked -> currentPlayerPieceOrNot, possibleMoves()
+// 2. Target position clicked -> checkLegalOrNot() -- Function Can be divided for queen, bishop, etc.
+// 3. Maintain current Player -> setCurrentPlayer
+// 4. Check for draw/win - checkDraw(), checkWin();
+// 5. 
