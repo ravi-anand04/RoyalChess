@@ -43,6 +43,7 @@ function checkPossibleMoves(ele) {
     } else if (ele.innerText == "♕") {
       queenMoves(ele);
     } else if (ele.innerText == "♖") {
+      console.log("Rook clicked");
       rookMoves(ele);
     } else if (ele.innerText == "♗") {
       bishopMoves(ele);
@@ -85,14 +86,77 @@ function pawnMoves(ele) {
   console.log(possibleMoves);
 }
 
+function rookMoves(ele) {
+  const id = ele.id;
+  const column = id[0]; // a
+  const row = parseInt(id[1]); // 2
+  const columnAscii = column.charCodeAt(0);
+  //   console.log(columnAscii);
+  const temp = document.getElementById(`${id}`);
+  console.log(temp);
+
+  // check empty grids and add to possibleMoves, and stop when non-empty grid is found
+
+  // Bottom
+  for (let i = 1; i < row; i++) {
+    const currentGrid = column + `${i}`;
+    // console.log(currentGrid);
+  }
+  // Top
+  for (let i = row + 1; i <= 8; i++) {
+    const currentGrid = column + `${i}`;
+    // console.log(currentGrid);
+  }
+  // Left
+  for (let i = 97; i < columnAscii; i++) {
+    const currentGrid = String.fromCharCode(i) + `${parseInt(id[1])}`;
+    // console.log(currentGrid);
+  }
+  // Right
+  for (let i = columnAscii + 1; i <= 104; i++) {
+    const currentGrid = String.fromCharCode(i) + `${parseInt(id[1])}`;
+    // console.log(currentGrid);
+  }
+}
+
 function kingMoves(ele) {}
 
 function queenMoves(ele) {}
 
-function rookMoves(ele) {}
+function bishopMoves(ele) {
+  const id = ele.id;
+  const column = id[0]; // a
+  const row = parseInt(id[1]); // 2
+  const columnAscii = column.charCodeAt(0);
+  const temp = document.getElementById(`${id}`);
+  console.log(temp);
 
-function bishopMoves(ele) {}
+  // check empty grids and add to possibleMoves, and stop when non-empty grid is found
 
-function knightMoves(ele) {}
+  // Bottom
+  for (let i = 1; i < row; i++) {
+    const currentGrid = column + `${i}`;
+    // console.log(currentGrid);
+  }
+  // Top
+  for (let i = row + 1; i <= 8; i++) {
+    const currentGrid = column + `${i}`;
+    // console.log(currentGrid);
+  }
+  // Left
+  for (let i = 97; i < columnAscii; i++) {
+    const currentGrid = String.fromCharCode(i) + `${parseInt(id[1])}`;
+    // console.log(currentGrid);
+  }
+  // Right
+  for (let i = columnAscii + 1; i <= 104; i++) {
+    const currentGrid = String.fromCharCode(i) + `${parseInt(id[1])}`;
+    // console.log(currentGrid);
+  }
+}
+
+function knightMoves(ele) {
+    
+}
 
 function obstacleScenario() {}
