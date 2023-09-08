@@ -9,7 +9,10 @@
 
 let currentPlayer = "white",
   possibleMoves = [],
-  prevPiece = null;
+  prevPiece = null,
+  isKingMoved = false,
+  isLeftRookMoved = false,
+  isRightRookMoved = false;
 
 document.onreadystatechange = () => {
   initialSetup();
@@ -27,7 +30,13 @@ function initialSetup() {
         checkPossibleMoves(item);
       } else {
         // Target item, check for move legality and piece reset
+
+        item.innerText = `${prevPiece.innerText}`;
+        prevPiece.innerText = "";
+
+        currentPlayer = currentPlayer == "white" ? "black" : "white";
         prevPiece = null;
+        possibleMoves = [];
       }
 
       console.log("Clicked on:", item.id);
@@ -93,9 +102,6 @@ function rookMoves(ele) {
   const column = id[0]; // a
   const row = parseInt(id[1]); // 2
   const columnAscii = column.charCodeAt(0);
-  //   console.log(columnAscii);
-  const temp = document.getElementById(`${id}`);
-  console.log(temp);
 
   // check empty grids and add to possibleMoves, and stop when non-empty grid is found
 
@@ -177,8 +183,59 @@ function bishopMoves(ele) {
 }
 
 function kingMoves(ele) {
-    
+  const id = ele.id;
+  const column = id[0]; // a
+  const row = parseInt(id[1]); // 2
+  const columnAscii = column.charCodeAt(0);
+
+  // Right
+  possibleMoves.push(
+    String.fromCharCode(columnAscii + 1) + `${parseInt(id[1])}`
+  );
+  // Left
+  possibleMoves.push(
+    String.fromCharCode(columnAscii - 1) + `${parseInt(id[1])}`
+  );
+  // Top
+  possibleMoves.push(
+    String.fromCharCode(columnAscii) + `${parseInt(id[1]) + 1}`
+  );
+  // Bottom
+  possibleMoves.push(
+    String.fromCharCode(columnAscii) + `${parseInt(id[1]) - 1}`
+  );
+
+  // Top-right
+  possibleMoves.push(
+    String.fromCharCode(columnAscii - 1) + `${parseInt(id[1]) + 1}`
+  );
+  // Top-left
+  possibleMoves.push(
+    String.fromCharCode(columnAscii + 1) + `${parseInt(id[1]) + 1}`
+  );
+  // Bottom-left
+  possibleMoves.push(
+    String.fromCharCode(columnAscii - 1) + `${parseInt(id[1]) - 1}`
+  );
+  // Bottom-right
+  possibleMoves.push(
+    String.fromCharCode(columnAscii + 1) + `${parseInt(id[1]) - 1}`
+  );
+
+  console.log(possibleMoves);
+
+  // CASTLE VALIDATION
+
+  if (!isKingMoved && !isLeftRookMoved) {
+    //   castleValidation(king, rook, true); ---TODO---
+  } else if (!isKingMoved && !isRightRookMoved) {
+    //   castleValidation(king, rook, false); ---TODO---
+  }
+
+  // King should not be moved to check position
 }
+
+function castleValidation(ele, isLeftMoved) {}
 
 function queenMoves(ele) {
   rookMoves(ele);
@@ -190,8 +247,6 @@ function knightMoves(ele) {
   const column = id[0]; // e
   const row = parseInt(id[1]); // 5
   const columnAscii = column.charCodeAt(0);
-
-  // check empty grids and add to possibleMoves, and stop when non-empty grid is found
 
   // Top
   const top1 = `${String.fromCharCode(columnAscii - 1)}${row + 2}`;
