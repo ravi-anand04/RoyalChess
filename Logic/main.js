@@ -22,8 +22,6 @@ function initialSetup() {
   const items = document.getElementsByClassName("item");
 
   [...items].forEach((item) => {
-    // const ele = document.getElementById(item.id);
-    // console.log(ele);
     item.addEventListener("click", () => {
       if (!prevPiece) {
         prevPiece = item;
