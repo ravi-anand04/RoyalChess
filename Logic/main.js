@@ -23,46 +23,77 @@ function initialSetup() {
 
   [...items].forEach((item) => {
     item.addEventListener("click", () => {
-      if (!prevPiece) {
-        prevPiece = item;
-        checkPossibleMoves(item);
+      if (currentPlayer == "white") {
+        if (!prevPiece) {
+          prevPiece = item;
+          checkPossibleMoves(item);
+          // console.log(possibleMoves);
+        } else if (prevPiece != item) {
+          // Target item, check for move legality and piece reset
+          if (possibleMoves.includes(item.id)) {
+            item.innerText = `${prevPiece.innerText}`;
+            prevPiece.innerText = "";
+            //   console.log("Moves", possibleMoves);
+          }
+
+          console.log("Clicked on:", currentPlayer);
+          currentPlayer = currentPlayer === "white" ? "black" : "white";
+          prevPiece = null;
+          console.log(possibleMoves);
+          possibleMoves = [];
+        }
       } else {
-        // Target item, check for move legality and piece reset
+        if (!prevPiece) {
+          prevPiece = item;
+          checkPossibleMoves(item);
+          // console.log(possibleMoves);
+        } else if (prevPiece != item) {
+          // Target item, check for move legality and piece reset
+          if (possibleMoves.includes(item.id)) {
+            item.innerText = `${prevPiece.innerText}`;
+            prevPiece.innerText = "";
+            //   console.log("Moves", possibleMoves);
+          }
 
-        item.innerText = `${prevPiece.innerText}`;
-        prevPiece.innerText = "";
-
-        currentPlayer = currentPlayer == "white" ? "black" : "white";
-        prevPiece = null;
-        possibleMoves = [];
+          console.log("Clicked on:", currentPlayer);
+          currentPlayer = currentPlayer === "white" ? "black" : "white";
+          prevPiece = null;
+          console.log(possibleMoves);
+          possibleMoves = [];
+        }
       }
-
-      console.log("Clicked on:", item.id);
     });
   });
 }
 
 function checkPossibleMoves(ele) {
   //   console.log(ele);
-  if (currentPlayer === "white") {
-    if (ele.innerText == "♔") {
-      kingMoves(ele);
-    } else if (ele.innerText == "♕") {
-      queenMoves(ele);
-    } else if (ele.innerText == "♖") {
-      console.log("Rook clicked");
-      rookMoves(ele);
-    } else if (ele.innerText == "♗") {
-      console.log("Bishop clicked");
-      bishopMoves(ele);
-    } else if (ele.innerText == "♘") {
-      console.log("Night");
-      knightMoves(ele);
-    } else if (ele.innerText == "♙") {
-      //   console.log("Pawned");
-      pawnMoves(ele);
+
+  if (ele.innerText == "♔") {
+    kingMoves(ele);
+  } else if (ele.innerText == "♕") {
+    queenMoves(ele);
+  } else if (ele.innerText == "♖") {
+    console.log("Rook clicked");
+    rookMoves(ele);
+  } else if (ele.innerText == "♗") {
+    console.log("Bishop clicked");
+    bishopMoves(ele);
+  } else if (ele.innerText == "♘") {
+    console.log("Night");
+    knightMoves(ele);
+  }
+
+  if (currentPlayer === "black") {
+    if (ele.innerText == "♙") {
+      //   console.log("Black Pawned");
+      //   blackPawnMoves(ele);
     }
   } else {
+    if (ele.innerText == "♙") {
+      //   console.log("White Pawned");
+      pawnMoves(ele);
+    }
   }
 }
 
@@ -92,7 +123,7 @@ function pawnMoves(ele) {
       String.fromCharCode(column.charCodeAt(0) + 1) + `${parseInt(id[1]) + 1}`
     );
   }
-  console.log(possibleMoves);
+  //   console.log(possibleMoves);
 }
 
 function rookMoves(ele) {
@@ -107,21 +138,25 @@ function rookMoves(ele) {
   for (let i = 1; i < row; i++) {
     const currentGrid = column + `${i}`;
     // console.log(currentGrid);
+    possibleMoves.push(currentGrid);
   }
   // Top
   for (let i = row + 1; i <= 8; i++) {
     const currentGrid = column + `${i}`;
     // console.log(currentGrid);
+    possibleMoves.push(currentGrid);
   }
   // Left
   for (let i = 97; i < columnAscii; i++) {
     const currentGrid = String.fromCharCode(i) + `${parseInt(id[1])}`;
     // console.log(currentGrid);
+    possibleMoves.push(currentGrid);
   }
   // Right
   for (let i = columnAscii + 1; i <= 104; i++) {
     const currentGrid = String.fromCharCode(i) + `${parseInt(id[1])}`;
     // console.log(currentGrid);
+    possibleMoves.push(currentGrid);
   }
 }
 
@@ -136,36 +171,39 @@ function bishopMoves(ele) {
   // check empty grids and add to possibleMoves, and stop when non-empty grid is found
 
   // Top Right
-  let x = column.charCodeAt(column) + 1;
-  y = parseInt(row) + 1;
+  let x = column.charCodeAt(column) + 1; // f
+  let y = parseInt(row) + 1; // 4
   console.log("Top Right");
   while (x <= 104 && y <= 8) {
     const currentGrid = String.fromCharCode(x) + y;
     x++;
     y++;
-    console.log(currentGrid);
+    // console.log(currentGrid);
+    possibleMoves.push(currentGrid);
   }
 
   console.log("Top Left");
   // Top Left
-  x = column.charCodeAt(column) + 1;
+  x = column.charCodeAt(column) - 1;
   y = parseInt(row) + 1;
   while (x >= 97 && y <= 8) {
     const currentGrid = String.fromCharCode(x) + y;
     x--;
     y++;
-    console.log(currentGrid);
+    // console.log(currentGrid);
+    possibleMoves.push(currentGrid);
   }
 
   console.log("Bottom Right");
   // Bottom Right
-  x = column.charCodeAt(column) + 1;
-  y = parseInt(row) + 1;
+  x = column.charCodeAt(column) + 1; //
+  y = parseInt(row) - 1;
   while (x <= 104 && y >= 1) {
     const currentGrid = String.fromCharCode(x) + y;
     x++;
     y--;
-    console.log(currentGrid);
+    // console.log(currentGrid);
+    possibleMoves.push(currentGrid);
   }
 
   console.log("Bottom Left");
@@ -176,7 +214,8 @@ function bishopMoves(ele) {
     const currentGrid = String.fromCharCode(x) + y;
     x--;
     y--;
-    console.log(currentGrid);
+    // console.log(currentGrid);
+    possibleMoves.push(currentGrid);
   }
 }
 
@@ -220,7 +259,7 @@ function kingMoves(ele) {
     String.fromCharCode(columnAscii + 1) + `${parseInt(id[1]) - 1}`
   );
 
-  console.log(possibleMoves);
+  //   console.log(possibleMoves);
 
   // CASTLE VALIDATION
 
@@ -276,7 +315,7 @@ function knightMoves(ele) {
   knightMoveValidation(left1);
   knightMoveValidation(left2);
 
-  console.log(possibleMoves);
+  //   console.log(possibleMoves);
 }
 
 function knightMoveValidation(ele) {
