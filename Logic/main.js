@@ -9,10 +9,10 @@
 
 let currentPlayer = "white",
   possibleMoves = [],
-  prevPiece = null,
-  isKingMoved = false,
-  isLeftRookMoved = false,
-  isRightRookMoved = false;
+  prevPiece = null;
+// isKingMoved = false,
+// isLeftRookMoved = false,
+// isRightRookMoved = false;
 
 document.onreadystatechange = () => {
   initialSetup();
@@ -28,12 +28,14 @@ function initialSetup() {
           prevPiece = item;
           checkPossibleMoves(item);
           // console.log(possibleMoves);
-        } else if (prevPiece != item) {
+        } else if (prevPiece && prevPiece != item) {
           // Target item, check for move legality and piece reset
           if (possibleMoves.includes(item.id)) {
             item.innerText = `${prevPiece.innerText}`;
             prevPiece.innerText = "";
             //   console.log("Moves", possibleMoves);
+          } else {
+            alert("Wrong move!!");
           }
 
           console.log("Clicked on:", currentPlayer);
@@ -41,6 +43,19 @@ function initialSetup() {
           prevPiece = null;
           console.log(possibleMoves);
           possibleMoves = [];
+
+          const whitePieces = document.getElementsByClassName("whitePiece");
+          const blackPieces = document.getElementsByClassName("blackPiece");
+
+          Array.from(whitePieces).forEach((piece) => {
+            piece.classList.add("disabled-div");
+          });
+
+          Array.from(blackPieces).forEach((piece) => {
+            piece.classList.remove("disabled-div");
+          });
+
+          // console.log(whitePieces[2]);
         }
       } else {
         if (!prevPiece) {
