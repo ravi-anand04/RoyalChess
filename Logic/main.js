@@ -23,17 +23,29 @@ function initialSetup() {
 
   [...items].forEach((item) => {
     item.addEventListener("click", () => {
+      // Clicking on empty square should change the state of the application
+      if (
+        prevPiece == null &&
+        !(
+          item.classList.contains("whitePiece") ||
+          item.classList.contains("blackPiece")
+        )
+      ) {
+        // console.log("voila");
+        return;
+      }
       if (currentPlayer == "white") {
+        console.log("Cutting knight from queen");
         if (!prevPiece) {
           prevPiece = item;
-          checkPossibleMoves(item);
-          // console.log(possibleMoves);
+          whitePossibleMoves(item);
         } else if (prevPiece && prevPiece != item) {
           // Target item, check for move legality and piece reset
           if (possibleMoves.includes(item.id)) {
             item.innerText = `${prevPiece.innerText}`;
             prevPiece.innerText = "";
-            //   console.log("Moves", possibleMoves);
+            prevPiece.classList.remove("whitePiece");
+            item.classList.add("whitePiece");
           } else {
             alert("Wrong move!!");
           }
@@ -54,19 +66,29 @@ function initialSetup() {
           Array.from(blackPieces).forEach((piece) => {
             piece.classList.remove("disabled-div");
           });
-
-          // console.log(whitePieces[2]);
         }
-      } else {
+      } else if (currentPlayer == "black") {
+        if (
+          prevPiece == null &&
+          !(
+            item.classList.contains("whitePiece") ||
+            item.classList.contains("blackPiece")
+          )
+        ) {
+          return;
+        }
+
         if (!prevPiece) {
           prevPiece = item;
-          checkPossibleMoves(item);
+          blackPossibleMoves(item);
           // console.log(possibleMoves);
         } else if (prevPiece != item) {
           // Target item, check for move legality and piece reset
           if (possibleMoves.includes(item.id)) {
             item.innerText = `${prevPiece.innerText}`;
             prevPiece.innerText = "";
+            prevPiece.classList.remove("blackPiece");
+            item.classList.add("blackPiece");
             //   console.log("Moves", possibleMoves);
           }
 
@@ -75,15 +97,24 @@ function initialSetup() {
           prevPiece = null;
           console.log(possibleMoves);
           possibleMoves = [];
+
+          const whitePieces = document.getElementsByClassName("whitePiece");
+          const blackPieces = document.getElementsByClassName("blackPiece");
+
+          Array.from(whitePieces).forEach((piece) => {
+            piece.classList.remove("disabled-div");
+          });
+
+          Array.from(blackPieces).forEach((piece) => {
+            piece.classList.add("disabled-div");
+          });
         }
       }
     });
   });
 }
 
-function checkPossibleMoves(ele) {
-  //   console.log(ele);
-
+function whitePossibleMoves(ele) {
   if (ele.innerText == "♔") {
     kingMoves(ele);
   } else if (ele.innerText == "♕") {
@@ -95,20 +126,29 @@ function checkPossibleMoves(ele) {
     console.log("Bishop clicked");
     bishopMoves(ele);
   } else if (ele.innerText == "♘") {
-    console.log("Night");
+    console.log("Night clicked");
     knightMoves(ele);
-  }
-
-  if (currentPlayer === "black") {
-    if (ele.innerText == "♙") {
-      //   console.log("Black Pawned");
-      //   blackPawnMoves(ele);
-    }
   } else {
-    if (ele.innerText == "♙") {
-      //   console.log("White Pawned");
-      pawnMoves(ele);
-    }
+    pawnMoves(ele);
+  }
+}
+
+function blackPossibleMoves(ele) {
+  if (ele.innerText == "♚") {
+    kingMoves(ele);
+  } else if (ele.innerText == "♛") {
+    queenMoves(ele);
+  } else if (ele.innerText == "♜") {
+    console.log("Rook clicked");
+    rookMoves(ele);
+  } else if (ele.innerText == "♝") {
+    console.log("Bishop clicked");
+    bishopMoves(ele);
+  } else if (ele.innerText == "♞") {
+    console.log("Night clicked");
+    knightMoves(ele);
+  } else {
+    pawnMoves(ele);
   }
 }
 
@@ -116,29 +156,53 @@ function pawnMoves(ele) {
   const id = ele.id;
   const row = id[1]; // 2
   const column = id[0]; // a
+  console.log(id);
 
-  if (column == "a") {
-    possibleMoves.push("a" + `${parseInt(id[1]) + 1}`);
-    possibleMoves.push(
-      String.fromCharCode("a".charCodeAt(0) + 1) + `${parseInt(id[1]) + 1}`
-    );
-  } else if (column == "h") {
-    possibleMoves.push("h" + `${parseInt(id[1]) + 1}`);
-    possibleMoves.push(
-      String.fromCharCode("h".charCodeAt(0) - 1) + `${parseInt(id[1]) + 1}`
-    );
+  if (currentPlayer == "white") {
+    if (column == "a") {
+      possibleMoves.push("a" + `${parseInt(id[1]) + 1}`);
+      possibleMoves.push(
+        String.fromCharCode("a".charCodeAt(0) + 1) + `${parseInt(id[1]) + 1}`
+      );
+    } else if (column == "h") {
+      possibleMoves.push("h" + `${parseInt(id[1]) + 1}`);
+      possibleMoves.push(
+        String.fromCharCode("h".charCodeAt(0) - 1) + `${parseInt(id[1]) + 1}`
+      );
+    } else {
+      possibleMoves.push(
+        String.fromCharCode(column.charCodeAt(0) - 1) + `${parseInt(id[1]) + 1}`
+      );
+      possibleMoves.push(
+        String.fromCharCode(column.charCodeAt(0)) + `${parseInt(id[1]) + 1}`
+      );
+      possibleMoves.push(
+        String.fromCharCode(column.charCodeAt(0) + 1) + `${parseInt(id[1]) + 1}`
+      );
+    }
   } else {
-    possibleMoves.push(
-      String.fromCharCode(column.charCodeAt(0) - 1) + `${parseInt(id[1]) + 1}`
-    );
-    possibleMoves.push(
-      String.fromCharCode(column.charCodeAt(0)) + `${parseInt(id[1]) + 1}`
-    );
-    possibleMoves.push(
-      String.fromCharCode(column.charCodeAt(0) + 1) + `${parseInt(id[1]) + 1}`
-    );
+    if (column == "a") {
+      possibleMoves.push("a" + `${parseInt(id[1]) - 1}`);
+      possibleMoves.push(
+        String.fromCharCode("a".charCodeAt(0) + 1) + `${parseInt(id[1]) - 1}`
+      );
+    } else if (column == "h") {
+      possibleMoves.push("h" + `${parseInt(id[1]) + 1}`);
+      possibleMoves.push(
+        String.fromCharCode("h".charCodeAt(0) - 1) + `${parseInt(id[1]) - 1}`
+      );
+    } else {
+      possibleMoves.push(
+        String.fromCharCode(column.charCodeAt(0) - 1) + `${parseInt(id[1]) - 1}`
+      );
+      possibleMoves.push(
+        String.fromCharCode(column.charCodeAt(0)) + `${parseInt(id[1]) - 1}`
+      );
+      possibleMoves.push(
+        String.fromCharCode(column.charCodeAt(0) + 1) + `${parseInt(id[1]) - 1}`
+      );
+    }
   }
-  //   console.log(possibleMoves);
 }
 
 function rookMoves(ele) {
