@@ -23,7 +23,8 @@ function initialSetup() {
 
   [...items].forEach((item) => {
     item.addEventListener("click", () => {
-      // Clicking on empty square should change the state of the application
+      // Clicking on empty square should not change the state of the application
+      console.log(prevPiece);
       if (
         prevPiece == null &&
         !(
@@ -31,20 +32,20 @@ function initialSetup() {
           item.classList.contains("blackPiece")
         )
       ) {
-        // console.log("voila");
         return;
       }
       if (currentPlayer == "white") {
-        console.log("Cutting knight from queen");
-        if (!prevPiece) {
+        if (!prevPiece && !item.classList.contains("blackPiece")) {
           prevPiece = item;
           whitePossibleMoves(item);
         } else if (prevPiece && prevPiece != item) {
           // Target item, check for move legality and piece reset
+          console.log("2nd click");
           if (possibleMoves.includes(item.id)) {
             item.innerText = `${prevPiece.innerText}`;
             prevPiece.innerText = "";
             prevPiece.classList.remove("whitePiece");
+            // prevPiece.classList.add("disabled-div");
             item.classList.add("whitePiece");
           } else {
             alert("Wrong move!!");
@@ -56,40 +57,31 @@ function initialSetup() {
           console.log(possibleMoves);
           possibleMoves = [];
 
-          const whitePieces = document.getElementsByClassName("whitePiece");
-          const blackPieces = document.getElementsByClassName("blackPiece");
+          // const whitePieces = document.getElementsByClassName("whitePiece");
+          // const blackPieces = document.getElementsByClassName("blackPiece");
 
-          Array.from(whitePieces).forEach((piece) => {
-            piece.classList.add("disabled-div");
-          });
+          // Array.from(whitePieces).forEach((piece) => {
+          //   piece.classList.add("disabled-div");
+          // });
 
-          Array.from(blackPieces).forEach((piece) => {
-            piece.classList.remove("disabled-div");
-          });
+          // Array.from(blackPieces).forEach((piece) => {
+          //   piece.classList.remove("disabled-div");
+          // });
         }
       } else if (currentPlayer == "black") {
-        if (
-          prevPiece == null &&
-          !(
-            item.classList.contains("whitePiece") ||
-            item.classList.contains("blackPiece")
-          )
-        ) {
-          return;
-        }
-
-        if (!prevPiece) {
+        // console.log("black piece");
+        if (!prevPiece && !item.classList.contains("whitePiece")) {
           prevPiece = item;
           blackPossibleMoves(item);
-          // console.log(possibleMoves);
-        } else if (prevPiece != item) {
-          // Target item, check for move legality and piece reset
+          console.log("Moves", possibleMoves);
+        } else if (prevPiece != item && prevPiece != item) {
+          // Target item, check  for move legality and piece reset
           if (possibleMoves.includes(item.id)) {
             item.innerText = `${prevPiece.innerText}`;
             prevPiece.innerText = "";
             prevPiece.classList.remove("blackPiece");
             item.classList.add("blackPiece");
-            //   console.log("Moves", possibleMoves);
+            console.log("Moves", possibleMoves);
           }
 
           console.log("Clicked on:", currentPlayer);
@@ -98,16 +90,16 @@ function initialSetup() {
           console.log(possibleMoves);
           possibleMoves = [];
 
-          const whitePieces = document.getElementsByClassName("whitePiece");
-          const blackPieces = document.getElementsByClassName("blackPiece");
+          // const whitePieces = document.getElementsByClassName("whitePiece");
+          // const blackPieces = document.getElementsByClassName("blackPiece");
 
-          Array.from(whitePieces).forEach((piece) => {
-            piece.classList.remove("disabled-div");
-          });
+          // Array.from(whitePieces).forEach((piece) => {
+          //   piece.classList.remove("disabled-div");
+          // });
 
-          Array.from(blackPieces).forEach((piece) => {
-            piece.classList.add("disabled-div");
-          });
+          // Array.from(blackPieces).forEach((piece) => {
+          //   piece.classList.add("disabled-div");
+          // });
         }
       }
     });
@@ -252,7 +244,7 @@ function bishopMoves(ele) {
   // Top Right
   let x = column.charCodeAt(column) + 1; // f
   let y = parseInt(row) + 1; // 4
-  console.log("Top Right");
+  // console.log("Top Right");
   while (x <= 104 && y <= 8) {
     const currentGrid = String.fromCharCode(x) + y;
     x++;
@@ -261,7 +253,7 @@ function bishopMoves(ele) {
     possibleMoves.push(currentGrid);
   }
 
-  console.log("Top Left");
+  // console.log("Top Left");
   // Top Left
   x = column.charCodeAt(column) - 1;
   y = parseInt(row) + 1;
@@ -273,7 +265,7 @@ function bishopMoves(ele) {
     possibleMoves.push(currentGrid);
   }
 
-  console.log("Bottom Right");
+  // console.log("Bottom Right");
   // Bottom Right
   x = column.charCodeAt(column) + 1; //
   y = parseInt(row) - 1;
@@ -285,7 +277,7 @@ function bishopMoves(ele) {
     possibleMoves.push(currentGrid);
   }
 
-  console.log("Bottom Left");
+  // console.log("Bottom Left");
   // Bottom Left
   x = column.charCodeAt(column) + 1;
   y = parseInt(row) + 1;
