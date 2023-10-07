@@ -41,6 +41,16 @@ function initialSetup() {
         } else if (prevPiece && prevPiece != item) {
           // Target item, check for move legality and piece reset
           console.log("2nd click");
+
+          if (item.classList.contains("whitePiece")) {
+            alert(
+              "Well, that's an interesting strategy, sacrificing your own troops!"
+            );
+            prevPiece = "";
+            possibleMoves = [];
+            return;
+          }
+
           if (possibleMoves.includes(item.id)) {
             item.innerText = `${prevPiece.innerText}`;
             prevPiece.innerText = "";
@@ -48,7 +58,10 @@ function initialSetup() {
             // prevPiece.classList.add("disabled-div");
             item.classList.add("whitePiece");
           } else {
-            alert("Wrong move!!");
+            alert("Move not possible");
+            prevPiece = "";
+            possibleMoves = [];
+            return;
           }
 
           console.log("Clicked on:", currentPlayer);
@@ -57,24 +70,33 @@ function initialSetup() {
           console.log(possibleMoves);
           possibleMoves = [];
 
-          // const whitePieces = document.getElementsByClassName("whitePiece");
-          // const blackPieces = document.getElementsByClassName("blackPiece");
+          const whitePieces = document.getElementsByClassName("whitePiece");
+          const blackPieces = document.getElementsByClassName("blackPiece");
 
-          // Array.from(whitePieces).forEach((piece) => {
-          //   piece.classList.add("disabled-div");
-          // });
+          Array.from(whitePieces).forEach((piece) => {
+            piece.classList.add("disabled-div");
+          });
 
-          // Array.from(blackPieces).forEach((piece) => {
-          //   piece.classList.remove("disabled-div");
-          // });
+          Array.from(blackPieces).forEach((piece) => {
+            piece.classList.remove("disabled-div");
+          });
         }
       } else if (currentPlayer == "black") {
-        // console.log("black piece");
+        console.log("black piece");
         if (!prevPiece && !item.classList.contains("whitePiece")) {
           prevPiece = item;
           blackPossibleMoves(item);
           console.log("Moves", possibleMoves);
         } else if (prevPiece != item && prevPiece != item) {
+          if (item.classList.contains("blackPiece")) {
+            alert(
+              "Well, that's an interesting strategy, sacrificing your own troops!"
+            );
+            prevPiece = "";
+            possibleMoves = [];
+            return;
+          }
+
           // Target item, check  for move legality and piece reset
           if (possibleMoves.includes(item.id)) {
             item.innerText = `${prevPiece.innerText}`;
@@ -82,6 +104,9 @@ function initialSetup() {
             prevPiece.classList.remove("blackPiece");
             item.classList.add("blackPiece");
             console.log("Moves", possibleMoves);
+          } else {
+            alert("Move not possible");
+            return;
           }
 
           console.log("Clicked on:", currentPlayer);
@@ -90,16 +115,16 @@ function initialSetup() {
           console.log(possibleMoves);
           possibleMoves = [];
 
-          // const whitePieces = document.getElementsByClassName("whitePiece");
-          // const blackPieces = document.getElementsByClassName("blackPiece");
+          const whitePieces = document.getElementsByClassName("whitePiece");
+          const blackPieces = document.getElementsByClassName("blackPiece");
 
-          // Array.from(whitePieces).forEach((piece) => {
-          //   piece.classList.remove("disabled-div");
-          // });
+          Array.from(whitePieces).forEach((piece) => {
+            piece.classList.remove("disabled-div");
+          });
 
-          // Array.from(blackPieces).forEach((piece) => {
-          //   piece.classList.add("disabled-div");
-          // });
+          Array.from(blackPieces).forEach((piece) => {
+            piece.classList.add("disabled-div");
+          });
         }
       }
     });
@@ -179,7 +204,7 @@ function pawnMoves(ele) {
         String.fromCharCode("a".charCodeAt(0) + 1) + `${parseInt(id[1]) - 1}`
       );
     } else if (column == "h") {
-      possibleMoves.push("h" + `${parseInt(id[1]) + 1}`);
+      possibleMoves.push("h" + `${parseInt(id[1]) - 1}`);
       possibleMoves.push(
         String.fromCharCode("h".charCodeAt(0) - 1) + `${parseInt(id[1]) - 1}`
       );
@@ -206,28 +231,32 @@ function rookMoves(ele) {
   // check empty grids and add to possibleMoves, and stop when non-empty grid is found
 
   // Bottom
-  for (let i = 1; i < row; i++) {
-    const currentGrid = column + `${i}`;
-    // console.log(currentGrid);
-    possibleMoves.push(currentGrid);
+  for (let i = row - 1; i >= 1; i--) {
+    const currentGridId = column + `${i}`;
+    const currentGrid = document.getElementById(currentGridId);
+    possibleMoves.push(currentGridId);
+    if (currentGrid.innerText) break;
   }
   // Top
   for (let i = row + 1; i <= 8; i++) {
-    const currentGrid = column + `${i}`;
-    // console.log(currentGrid);
-    possibleMoves.push(currentGrid);
+    const currentGridId = column + `${i}`;
+    const currentGrid = document.getElementById(currentGridId);
+    possibleMoves.push(currentGridId);
+    if (currentGrid.innerText) break;
   }
   // Left
-  for (let i = 97; i < columnAscii; i++) {
-    const currentGrid = String.fromCharCode(i) + `${parseInt(id[1])}`;
-    // console.log(currentGrid);
-    possibleMoves.push(currentGrid);
+  for (let i = columnAscii - 1; i >= 97; i--) {
+    const currentGridId = String.fromCharCode(i) + `${parseInt(id[1])}`;
+    const currentGrid = document.getElementById(currentGridId);
+    possibleMoves.push(currentGridId);
+    if (currentGrid.innerText) break;
   }
   // Right
   for (let i = columnAscii + 1; i <= 104; i++) {
-    const currentGrid = String.fromCharCode(i) + `${parseInt(id[1])}`;
-    // console.log(currentGrid);
-    possibleMoves.push(currentGrid);
+    const currentGridId = String.fromCharCode(i) + `${parseInt(id[1])}`;
+    const currentGrid = document.getElementById(currentGridId);
+    possibleMoves.push(currentGridId);
+    if (currentGrid.innerText) break;
   }
 }
 
@@ -235,8 +264,8 @@ function bishopMoves(ele) {
   const id = ele.id;
   const column = id[0]; // a
   const row = parseInt(id[1]); // 2
-  const columnAscii = column.charCodeAt(0);
-  const temp = document.getElementById(`${id}`);
+  // const columnAscii = column.charCodeAt(0);
+  const temp = document.getElementById(id);
   console.log(temp);
 
   // check empty grids and add to possibleMoves, and stop when non-empty grid is found
@@ -246,11 +275,12 @@ function bishopMoves(ele) {
   let y = parseInt(row) + 1; // 4
   // console.log("Top Right");
   while (x <= 104 && y <= 8) {
-    const currentGrid = String.fromCharCode(x) + y;
+    const currentGridId = String.fromCharCode(x) + y;
     x++;
     y++;
-    // console.log(currentGrid);
-    possibleMoves.push(currentGrid);
+    const currentGrid = document.getElementById(currentGridId);
+    possibleMoves.push(currentGridId);
+    if (currentGrid.innerText) break;
   }
 
   // console.log("Top Left");
@@ -258,11 +288,12 @@ function bishopMoves(ele) {
   x = column.charCodeAt(column) - 1;
   y = parseInt(row) + 1;
   while (x >= 97 && y <= 8) {
-    const currentGrid = String.fromCharCode(x) + y;
+    const currentGridId = String.fromCharCode(x) + y;
     x--;
     y++;
-    // console.log(currentGrid);
-    possibleMoves.push(currentGrid);
+    const currentGrid = document.getElementById(currentGridId);
+    possibleMoves.push(currentGridId);
+    if (currentGrid.innerText) break;
   }
 
   // console.log("Bottom Right");
@@ -270,11 +301,12 @@ function bishopMoves(ele) {
   x = column.charCodeAt(column) + 1; //
   y = parseInt(row) - 1;
   while (x <= 104 && y >= 1) {
-    const currentGrid = String.fromCharCode(x) + y;
+    const currentGridId = String.fromCharCode(x) + y;
     x++;
     y--;
-    // console.log(currentGrid);
-    possibleMoves.push(currentGrid);
+    const currentGrid = document.getElementById(currentGridId);
+    possibleMoves.push(currentGridId);
+    if (currentGrid.innerText) break;
   }
 
   // console.log("Bottom Left");
@@ -282,11 +314,13 @@ function bishopMoves(ele) {
   x = column.charCodeAt(column) + 1;
   y = parseInt(row) + 1;
   while (x >= 97 && y >= 1) {
-    const currentGrid = String.fromCharCode(x) + y;
     x--;
     y--;
-    // console.log(currentGrid);
-    possibleMoves.push(currentGrid);
+    const currentGridId = String.fromCharCode(x) + y;
+    const currentGrid = document.getElementById(currentGridId);
+    console.log("Grid ID:", currentGridId);
+    possibleMoves.push(currentGridId);
+    if (currentGrid.innerText) break;
   }
 }
 

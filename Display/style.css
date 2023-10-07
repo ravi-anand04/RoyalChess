@@ -35,3 +35,11 @@ body {
 .disabled-div {
   pointer-events: none;
 }
+
+.whitePiece {
+  cursor: pointer;
+}
+
+.blackPiece {
+  cursor: pointer;
+}
