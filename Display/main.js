@@ -14,7 +14,21 @@ let currentPlayer = "white",
 // isLeftRookMoved = false,
 // isRightRookMoved = false;
 
+const btn = document.getElementById("btn");
+
+btn.addEventListener("click", () => {
+  initialSetup();
+});
+
 document.onreadystatechange = () => {
+  setTimeout(() => {
+    const loader = document.getElementById("loader");
+    const content = document.getElementById("container");
+
+    loader.style.display = "none";
+    content.style.display = "block";
+  }, 2000);
+
   initialSetup();
 };
 
@@ -70,16 +84,16 @@ function initialSetup() {
           console.log(possibleMoves);
           possibleMoves = [];
 
-          const whitePieces = document.getElementsByClassName("whitePiece");
-          const blackPieces = document.getElementsByClassName("blackPiece");
+          // const whitePieces = document.getElementsByClassName("whitePiece");
+          // const blackPieces = document.getElementsByClassName("blackPiece");
 
-          Array.from(whitePieces).forEach((piece) => {
-            piece.classList.add("disabled-div");
-          });
+          // Array.from(whitePieces).forEach((piece) => {
+          //   piece.classList.add("disabled-div");
+          // });
 
-          Array.from(blackPieces).forEach((piece) => {
-            piece.classList.remove("disabled-div");
-          });
+          // Array.from(blackPieces).forEach((piece) => {
+          //   piece.classList.remove("disabled-div");
+          // });
         }
       } else if (currentPlayer == "black") {
         console.log("black piece");
@@ -115,16 +129,16 @@ function initialSetup() {
           console.log(possibleMoves);
           possibleMoves = [];
 
-          const whitePieces = document.getElementsByClassName("whitePiece");
-          const blackPieces = document.getElementsByClassName("blackPiece");
+          // const whitePieces = document.getElementsByClassName("whitePiece");
+          // const blackPieces = document.getElementsByClassName("blackPiece");
 
-          Array.from(whitePieces).forEach((piece) => {
-            piece.classList.remove("disabled-div");
-          });
+          // Array.from(whitePieces).forEach((piece) => {
+          //   piece.classList.remove("disabled-div");
+          // });
 
-          Array.from(blackPieces).forEach((piece) => {
-            piece.classList.add("disabled-div");
-          });
+          // Array.from(blackPieces).forEach((piece) => {
+          //   piece.classList.add("disabled-div");
+          // });
         }
       }
     });

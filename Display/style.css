@@ -1,5 +1,118 @@
-body {
-  background-color: rgb(218, 251, 255);
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@300;500;700&family=Poppins:wght@700&family=Young+Serif&display=swap");
+
+* {
+  font-family: "Poppins";
+  scroll-behavior: smooth;
+  text-align: center;
+}
+
+.content {
+  /* Add your styles for the content here */
+  z-index: 1; /* Place it above the ::before pseudo-element */
+  position: relative;
+  /* Other styles for your content */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Add a semi-transparent background to make content more readable */
+  padding: 10px 20px; /* Add padding to content if needed */
+  margin: 10px auto; /* Add margin to content if needed */
+  border-radius: 10px; /* Add border-radius to content if needed */
+  display: flex;
+  justify-content: space-around;
+}
+
+.content h1 {
+  letter-spacing: 2px;
+  color: #2b124c;
+}
+
+.additional {
+  display: flex;
+  align-items: center;
+}
+
+.additional a {
+  text-decoration: none;
+  color: black;
+  padding: 0 10px;
+}
+
+.additional a:hover {
+  background-color: #6da5c0;
+  border-radius: 10px;
+}
+
+.intro {
+  background-color: black;
+  opacity: 0.7;
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  height: 90%;
+  overflow: hidden;
+}
+
+ul li h1 {
+  text-align: left;
+}
+
+.intro h1 {
+  letter-spacing: 2px;
+  font-size: 1.6rem;
+  color: whitesmoke;
+  padding: 0 15%;
+  /* text-align: left; */
+}
+
+.intro ul li:first-child h1 {
+  font-size: 3.2rem;
+}
+
+.intro ul li:first-child h1 span{
+  color: rgb(255, 34, 0);
+}
+
+.rules {
+  color: white;
+  padding: 2rem;
+  position: relative;
+  height: 90%;
+  overflow: hidden;
+}
+
+.rules img {
+  width: 100%;
+  position: absolute; /* Add absolute positioning */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.rules h1 {
+  font-size: 3rem;
+}
+
+.board-container{
+}
+
+.chessboard::before {
+  content: "";
+  background-image: url(./carol-jeng-c04CrVbw56o-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  /* background-attachment: fixed; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind other content */
+  filter: blur(2px); /* Adjust the blur amount as needed */
 }
 
 .chessboard {
@@ -11,20 +124,31 @@ body {
   grid-template-columns: repeat(8, 1fr);
   /* grid-template-rows: repeat(8, 1fr); */
 }
+
+@media screen and (max-width: 480px) {
+  .chessboard::before {
+    background: #0c7075;
+    opacity: 0.3;
+  }
+
+  .additional {
+    display: none;
+  }
+}
+
 .black {
   width: 80px;
   height: 80px;
-  /* background-color: #999; */
   background-color: #5e9824;
   font-size: 50px;
-  text-align: center;
+  /* text-align: center; */
 }
 .white {
   width: 80px;
   height: 80px;
   background-color: #ddeac3;
   font-size: 50px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .enabled-div {
@@ -42,4 +166,143 @@ body {
 
 .blackPiece {
   cursor: pointer;
+}
+
+footer {
+  padding: 2px;
+  margin: 15px;
+  color: white;
+  opacity: 0.9;
+  background: #5e9824;
+}
+
+/* LOADER */
+
+body {
+  width: 95vw;
+  height: 95vh;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background: var(--bg);
+}
+:root {
+  --bg: #141414;
+  --main-color: #0757b3;
+  --logo-bg: #0c0c0c;
+  --time: 6s;
+  --sec-time: calc(var(--time) / 2);
+  --ter-time: calc(var(--time) / 3);
+  --glow-sizeIn: 2px;
+  --glow-sizeOut: 5px;
+  --glow-colorIn: #0077ff;
+  --glow-colorOut: #0a5ebf;
+  --stroke-w-small: 1;
+  --stroke-w-medium: 2;
+  --stroke-w-big: 5;
+}
+svg {
+  width: 10vw;
+  stroke-linecap: round;
+  transform: rotate(-45deg);
+  stroke: white;
+  fill: none;
+  stroke-miterlimit: 10;
+}
+/*-----
+  Neon/Glow effect
+-----*/
+svg circle,
+svg path {
+  filter: drop-shadow(0px 0px var(--glow-sizeIn) var(--glow-colorIn))
+    drop-shadow(0px 0px var(--glow-sizeOut) var(--glow-colorOut))
+    drop-shadow(0px 0px var(--glow-sizeOut) var(--glow-colorOut))
+    drop-shadow(0px 0px var(--glow-sizeOut) var(--glow-colorOut));
+}
+/*-----
+  Background spin
+-----*/
+.spin {
+  stroke-width: var(--stroke-w-small);
+  stroke-dasharray: 104.7239, 104.7239;
+}
+#spinMotion {
+  transform-origin: center center;
+  animation: aniSpin var(--sec-time) linear infinite;
+}
+@keyframes aniSpin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+/*-----
+  Main stroke animation
+-----*/
+.main {
+  stroke-width: var(--stroke-w-big);
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: hero var(--time) ease infinite;
+}
+@keyframes hero {
+  0% {
+    stroke-dashoffset: 500;
+  }
+  58% {
+    stroke-dashoffset: -150;
+  }
+  60% {
+    stroke-dashoffset: -150;
+  }
+  80% {
+    stroke-dashoffset: 0;
+  }
+  84% {
+    stroke-dashoffset: 500;
+    stroke: var(--stroke-w-big);
+  }
+  85% {
+    stroke-dashoffset: 500;
+    stroke: none;
+  }
+  100% {
+    stroke-dashoffset: 500;
+    stroke: none;
+  }
+}
+/*-----
+  Gears
+-----*/
+.smallGear,
+.bigGear {
+  stroke-width: var(--stroke-w-medium);
+  animation: gear var(--time) ease infinite;
+}
+@keyframes gear {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/*-----
+  Big Gear
+-----*/
+.bigGear {
+  stroke-dasharray: 100;
+}
+/*-----
+  BG
+-----*/
+.BG {
+  filter: drop-shadow(0px 0px 0px var(--bg));
+  fill: var(--logo-bg);
+  stroke: none;
 }

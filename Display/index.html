@@ -8,81 +8,209 @@
     <script defer src="./main.js"></script>
   </head>
   <body>
-    <div class="chessboard">
-      <!-- 1st -->
-      <!-- Black Pieces: 18-23 -->
-      <div id="a8" class="item blackPiece white">&#9820;</div>
-      <div id="b8" class="item blackPiece black">&#9822;</div>
-      <div id="c8" class="item blackPiece white">&#9821;</div>
-      <div id="d8" class="item blackPiece black">&#9819;</div>
-      <div id="e8" class="item blackPiece white">&#9818;</div>
-      <div id="f8" class="item blackPiece black">&#9821;</div>
-      <div id="g8" class="item blackPiece white">&#9822;</div>
-      <div id="h8" class="item blackPiece black">&#9820;</div>
-      <!-- 2nd -->
-      <div id="a7" class="item blackPiece black">&#9823;</div>
-      <div id="b7" class="item blackPiece white">&#9823;</div>
-      <div id="c7" class="item blackPiece black">&#9823;</div>
-      <div id="d7" class="item blackPiece white">&#9823;</div>
-      <div id="e7" class="item blackPiece black">&#9823;</div>
-      <div id="f7" class="item blackPiece white">&#9823;</div>
-      <div id="g7" class="item blackPiece black">&#9823;</div>
-      <div id="h7" class="item blackPiece white">&#9823;</div>
-      <!-- 3th -->
-      <div id="a6" class="item white"></div>
-      <div id="b6" class="item black"></div>
-      <div id="c6" class="item white"></div>
-      <div id="d6" class="item black"></div>
-      <div id="e6" class="item white"></div>
-      <div id="f6" class="item black"></div>
-      <div id="g6" class="item white"></div>
-      <div id="h6" class="item black"></div>
-      <!-- 4st -->
-      <div id="a5" class="item black"></div>
-      <div id="b5" class="item white"></div>
-      <div id="c5" class="item black"></div>
-      <div id="d5" class="item white"></div>
-      <div id="e5" class="item black"></div>
-      <div id="f5" class="item white"></div>
-      <div id="g5" class="item black"></div>
-      <div id="h5" class="item white"></div>
-      <!-- 5th -->
-      <div id="a4" class="item white"></div>
-      <div id="b4" class="item black"></div>
-      <div id="c4" class="item white"></div>
-      <div id="d4" class="item black"></div>
-      <div id="e4" class="item white"></div>
-      <div id="f4" class="item black"></div>
-      <div id="g4" class="item white"></div>
-      <div id="h4" class="item black"></div>
-      <!-- 6th -->
-      <div id="a3" class="item black"></div>
-      <div id="b3" class="item white"></div>
-      <div id="c3" class="item black"></div>
-      <div id="d3" class="item white"></div>
-      <div id="e3" class="item black"></div>
-      <div id="f3" class="item white"></div>
-      <div id="g3" class="item black"></div>
-      <div id="h3" class="item white"></div>
-      <!-- 7th -->
-      <!-- White Pieces: 12-17 -->
-      <div id="a2" class="item whitePiece white">&#9817;</div>
-      <div id="b2" class="item whitePiece black">&#9817;</div>
-      <div id="c2" class="item whitePiece white">&#9817;</div>
-      <div id="d2" class="item whitePiece black">&#9817;</div>
-      <div id="e2" class="item whitePiece white">&#9817;</div>
-      <div id="f2" class="item whitePiece black">&#9817;</div>
-      <div id="g2" class="item whitePiece white">&#9817;</div>
-      <div id="h2" class="item whitePiece black">&#9817;</div>
-      <!-- 8th -->
-      <div id="a1" class="item whitePiece black">&#9814;</div>
-      <div id="b1" class="item whitePiece white">&#9816;</div>
-      <div id="c1" class="item whitePiece black">&#9815;</div>
-      <div id="d1" class="item whitePiece white">&#9813;</div>
-      <div id="e1" class="item whitePiece black">&#9812;</div>
-      <div id="f1" class="item whitePiece white">&#9815;</div>
-      <div id="g1" class="item whitePiece black">&#9816;</div>
-      <div id="h1" class="item whitePiece white">&#9814;</div>
+    <!-- LOADER -->
+
+    <!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 0 250 250"
+      style="enable-background: new 0 0 250 250"
+      xml:space="preserve"
+      id="loader"
+    >
+      <!----------- 
+First element will show in the back 
+----------->
+      <path
+        pathLength="500"
+        class="BG"
+        d="M92.6,218.59c8.4,0,15.21-6.81,15.21-15.21c0-4.68-3.52-9.6-5.73-12.12c-11.85-13.49-12.69-33.27,0-45.96
+ c2.16-2.16,7.14-5.47,7.14-5.47c6.72-4.28,11.18-11.79,11.18-20.35c0-6.05-1.79-12.09-5.9-15.8c0,0-11.05-9.12-11.05-19.03
+ c0-11.93,9.67-21.61,21.61-21.61s21.61,9.67,21.61,21.61c0,6.91-5.36,13.8-8.67,17.33c-4.37,4.66-7.53,10.61-7.53,17.5
+ c0,8.18,4.07,15.4,10.3,19.76c0,0,5.42,4.2,7.28,6.06c12.69,12.69,12.55,33.14,0,45.96c-3.08,3.15-5.99,7.25-5.99,12.12
+ c0,8.4,6.81,15.21,15.21,15.21c2.03,0,4.71-0.7,6.2-1.23c36.93-13.09,61.6-50.74,61.6-92.36c0-55.23-44.77-100-100-100
+ s-100,44.77-100,100c0,41.72,24.86,79.27,61.85,92.47C88.28,217.95,90.63,218.59,92.6,218.59z"
+      />
+      <!----------- 
+The small lines that spin around the BG
+----------->
+      <g id="spinMotion">
+        <circle class="spin" cx="125" cy="125" r="101" />
+      </g>
+      <!----------- 
+The main stroke animation/loading element
+Used pathLength in order to eleminate the need to calulate the length of the paths for the animation
+----------->
+      <path
+        pathLength="500"
+        class="main"
+        d="M92.6,218.59c8.4,0,15.21-6.81,15.21-15.21c0-4.68-3.52-9.6-5.73-12.12c-11.85-13.49-12.69-33.27,0-45.96
+ c2.16-2.16,7.14-5.47,7.14-5.47c6.72-4.28,11.18-11.79,11.18-20.35c0-6.05-1.79-12.09-5.9-15.8c0,0-11.05-9.12-11.05-19.03
+ c0-11.93,9.67-21.61,21.61-21.61s21.61,9.67,21.61,21.61c0,6.91-5.36,13.8-8.67,17.33c-4.37,4.66-7.53,10.61-7.53,17.5
+ c0,8.18,4.07,15.4,10.3,19.76c0,0,5.42,4.2,7.28,6.06c12.69,12.69,12.55,33.14,0,45.96c-3.08,3.15-5.99,7.25-5.99,12.12
+ c0,8.4,6.81,15.21,15.21,15.21c2.03,0,4.71-0.7,6.2-1.23c36.93-13.09,61.6-50.74,61.6-92.36c0-55.23-44.77-100-100-100
+ s-100,44.77-100,100c0,41.72,24.86,79.27,61.85,92.47C88.28,217.95,90.63,218.59,92.6,218.59z"
+      />
+      <!----------- 
+The Two "gears" that's shown inside of the main stroke animation
+----------->
+      <circle class="smallGear" cx="125.06" cy="84.64" r="11.92" />
+      <circle class="bigGear" cx="125.06" cy="168.28" r="22.98" />
+    </svg>
+
+    <div id="container" style="display: none">
+      <header class="content">
+        <h1>Royal Chess</h1>
+        <div class="additional">
+          <a href="#chess"><h2>Play</h2></a>
+          <a href=""><h2>Rules</h2></a>
+          <a href=""><h2>Tutorials</h2></a>
+          <a
+            href="https://www.chess.com/article/view/the-best-chess-games-of-all-time"
+            target="_blank"
+            ><h2>Famous Games</h2></a
+          >
+          <a href=""><h2>Quiz</h2></a>
+        </div>
+      </header>
+
+      <div class="intro">
+        <ul>
+          <li>
+            <h1>Welcome to the <span>RoyalChess</span> platform!</h1>
+          </li>
+          <li>
+            <h1>
+              Our app combines classic gameplay and immersive chess experience.
+            </h1>
+          </li>
+          <li>
+            <h1>
+              Challenge players of all levels whether you're a seasoned player
+              or a beginner looking to sharpen your skills.
+            </h1>
+          </li>
+          <li>
+            <h1>
+              Embark on an exciting journey of strategy, tactics, and endless
+              fun!
+            </h1>
+          </li>
+        </ul>
+      </div>
+      <div id="rules" class="rules">
+        <img src="./alexander-mils-W8C1d0Cydhc-unsplash.jpg" alt="" />
+        <div class="rule-details"></div>
+        <h1>Rules of the game</h1>
+        <div class="move-basics">
+          Start with the fundamentals, explaining the movement of each chess
+          piece, including pawns, rooks, knights, bishops, queens, and kings.
+          Use clear illustrations and interactive diagrams to make it easy to
+          understand.
+        </div>
+        <div class="objective">
+          The main objective of the game is to checkmate the opponent's king
+          while ensuring the safety of your own king.
+        </div>
+
+        <div class="opening-principles">
+          Explain the importance of controlling the center, developing pieces,
+          and ensuring king safety during the opening phase. Showcase a few
+          common opening sequences.
+        </div>
+        <div class="strategies">
+          Introduce fundamental chess concepts such as pins, forks, skewers,
+          discovered attacks, and double attacks. Use interactive puzzles to
+          reinforce these concepts.
+        </div>
+      </div>
+      <div class="board-container">
+        <div id="chess" class="chessboard">
+          <!-- 1st -->
+          <!-- Black Pieces: 18-23 -->
+          <div id="a8" class="item blackPiece white">&#9820;</div>
+          <div id="b8" class="item blackPiece black">&#9822;</div>
+          <div id="c8" class="item blackPiece white">&#9821;</div>
+          <div id="d8" class="item blackPiece black">&#9819;</div>
+          <div id="e8" class="item blackPiece white">&#9818;</div>
+          <div id="f8" class="item blackPiece black">&#9821;</div>
+          <div id="g8" class="item blackPiece white">&#9822;</div>
+          <div id="h8" class="item blackPiece black">&#9820;</div>
+          <!-- 2nd -->
+          <div id="a7" class="item blackPiece black">&#9823;</div>
+          <div id="b7" class="item blackPiece white">&#9823;</div>
+          <div id="c7" class="item blackPiece black">&#9823;</div>
+          <div id="d7" class="item blackPiece white">&#9823;</div>
+          <div id="e7" class="item blackPiece black">&#9823;</div>
+          <div id="f7" class="item blackPiece white">&#9823;</div>
+          <div id="g7" class="item blackPiece black">&#9823;</div>
+          <div id="h7" class="item blackPiece white">&#9823;</div>
+          <!-- 3th -->
+          <div id="a6" class="item white"></div>
+          <div id="b6" class="item black"></div>
+          <div id="c6" class="item white"></div>
+          <div id="d6" class="item black"></div>
+          <div id="e6" class="item white"></div>
+          <div id="f6" class="item black"></div>
+          <div id="g6" class="item white"></div>
+          <div id="h6" class="item black"></div>
+          <!-- 4st -->
+          <div id="a5" class="item black"></div>
+          <div id="b5" class="item white"></div>
+          <div id="c5" class="item black"></div>
+          <div id="d5" class="item white"></div>
+          <div id="e5" class="item black"></div>
+          <div id="f5" class="item white"></div>
+          <div id="g5" class="item black"></div>
+          <div id="h5" class="item white"></div>
+          <!-- 5th -->
+          <div id="a4" class="item white"></div>
+          <div id="b4" class="item black"></div>
+          <div id="c4" class="item white"></div>
+          <div id="d4" class="item black"></div>
+          <div id="e4" class="item white"></div>
+          <div id="f4" class="item black"></div>
+          <div id="g4" class="item white"></div>
+          <div id="h4" class="item black"></div>
+          <!-- 6th -->
+          <div id="a3" class="item black"></div>
+          <div id="b3" class="item white"></div>
+          <div id="c3" class="item black"></div>
+          <div id="d3" class="item white"></div>
+          <div id="e3" class="item black"></div>
+          <div id="f3" class="item white"></div>
+          <div id="g3" class="item black"></div>
+          <div id="h3" class="item white"></div>
+          <!-- 7th -->
+          <!-- White Pieces: 12-17 -->
+          <div id="a2" class="item whitePiece white">&#9817;</div>
+          <div id="b2" class="item whitePiece black">&#9817;</div>
+          <div id="c2" class="item whitePiece white">&#9817;</div>
+          <div id="d2" class="item whitePiece black">&#9817;</div>
+          <div id="e2" class="item whitePiece white">&#9817;</div>
+          <div id="f2" class="item whitePiece black">&#9817;</div>
+          <div id="g2" class="item whitePiece white">&#9817;</div>
+          <div id="h2" class="item whitePiece black">&#9817;</div>
+          <!-- 8th -->
+          <div id="a1" class="item whitePiece black">&#9814;</div>
+          <div id="b1" class="item whitePiece white">&#9816;</div>
+          <div id="c1" class="item whitePiece black">&#9815;</div>
+          <div id="d1" class="item whitePiece white">&#9813;</div>
+          <div id="e1" class="item whitePiece black">&#9812;</div>
+          <div id="f1" class="item whitePiece white">&#9815;</div>
+          <div id="g1" class="item whitePiece black">&#9816;</div>
+          <div id="h1" class="item whitePiece white">&#9814;</div>
+        </div>
+        <button id="btn" class="reset">Reset Board</button>
+      </div>
+
+      <footer>
+        <h3>Copyright &copy; 2023 RoyalChess</h3>
+      </footer>
     </div>
   </body>
 </html>
