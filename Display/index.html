@@ -65,16 +65,9 @@ The Two "gears" that's shown inside of the main stroke animation
     <div id="container" style="display: none">
       <header class="content">
         <h1>Royal Chess</h1>
-        <div class="additional">
+        <div class="additional letter-spacing">
           <a href="#chess"><h2>Play</h2></a>
-          <a href=""><h2>Rules</h2></a>
-          <a href=""><h2>Tutorials</h2></a>
-          <a
-            href="https://www.chess.com/article/view/the-best-chess-games-of-all-time"
-            target="_blank"
-            ><h2>Famous Games</h2></a
-          >
-          <a href=""><h2>Quiz</h2></a>
+          <a href="#rules"><h2>Rules</h2></a>
         </div>
       </header>
 
@@ -104,28 +97,48 @@ The Two "gears" that's shown inside of the main stroke animation
       </div>
       <div id="rules" class="rules">
         <img src="./alexander-mils-W8C1d0Cydhc-unsplash.jpg" alt="" />
-        <div class="rule-details"></div>
-        <h1>Rules of the game</h1>
-        <div class="move-basics">
-          Start with the fundamentals, explaining the movement of each chess
-          piece, including pawns, rooks, knights, bishops, queens, and kings.
-          Use clear illustrations and interactive diagrams to make it easy to
-          understand.
-        </div>
-        <div class="objective">
-          The main objective of the game is to checkmate the opponent's king
-          while ensuring the safety of your own king.
-        </div>
 
-        <div class="opening-principles">
-          Explain the importance of controlling the center, developing pieces,
-          and ensuring king safety during the opening phase. Showcase a few
-          common opening sequences.
-        </div>
-        <div class="strategies">
-          Introduce fundamental chess concepts such as pins, forks, skewers,
-          discovered attacks, and double attacks. Use interactive puzzles to
-          reinforce these concepts.
+        <h1>Rules of the game</h1>
+        <div class="rule-details">
+          <div class="card move-basics">
+            <h2>Basic Moves</h2>
+            <p>
+              Chess is a two-player strategy board game. The game is played on
+              an 8x8 grid known as a chessboard. Here are some basic moves:
+            </p>
+            <ul>
+              <li>Pawns move forward one square but capture diagonally.</li>
+              <li>Rooks move horizontally and vertically.</li>
+              <li>Knights move in an L-shape.</li>
+              <li>Bishops move diagonally.</li>
+              <li>Queens move horizontally, vertically, and diagonally.</li>
+              <li>Kings move one square in any direction.</li>
+            </ul>
+          </div>
+          <div class="card objective">
+            <h2>Objective</h2>
+            <p>
+              The main objective of the game is to checkmate the opponent's
+              king. This means the king is in a position to be captured (in
+              check), and there is no legal move to remove it from capture.
+            </p>
+          </div>
+          <div class="card opening-principles">
+            <h2>Opening Principles</h2>
+            <p>
+              The opening phase is crucial. You should aim to control the
+              center, develop your pieces (knights, bishops, rooks, etc.), and
+              ensure the safety of your king.
+            </p>
+          </div>
+          <div class="card strategies">
+            <h2>Advanced Strategies</h2>
+            <p>
+              As you progress, you can explore advanced strategies like pins,
+              forks, skewers, discovered attacks, and double attacks. Solving
+              puzzles and practicing these concepts will enhance your gameplay.
+            </p>
+          </div>
         </div>
       </div>
       <div class="board-container">
@@ -205,7 +218,6 @@ The Two "gears" that's shown inside of the main stroke animation
           <div id="g1" class="item whitePiece black">&#9816;</div>
           <div id="h1" class="item whitePiece white">&#9814;</div>
         </div>
-        <button id="btn" class="reset">Reset Board</button>
       </div>
 
       <footer>

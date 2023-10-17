@@ -16,10 +16,6 @@ let currentPlayer = "white",
 
 const btn = document.getElementById("btn");
 
-btn.addEventListener("click", () => {
-  initialSetup();
-});
-
 document.onreadystatechange = () => {
   setTimeout(() => {
     const loader = document.getElementById("loader");
