@@ -4,6 +4,7 @@
 1. Added basic piece movement logic, and handled edge cases while populating possible moves array.
 2. Updating possible moves array after every piece movement, and checking for legal moves from it.
 3. Make sure only the current player is able to move their piece.
+4. Added game rules.
 
 **Features yet to be implemented**
 
